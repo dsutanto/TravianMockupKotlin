@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/ForgotPass_Layout"
+    android:background="@drawable/login_bg"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true">
+
+    <ImageView
+        android:id="@+id/ForgotPass_Imageview"
+        android:layout_width="match_parent"
+        android:layout_height="147dp"
+        android:paddingBottom="30dp"
+        android:layout_marginTop="@dimen/Dim40dp"
+        app:srcCompat="@drawable/travia_logo"
+        android:contentDescription="@string/str_img_desc"/>
+
+    <ProgressBar
+        android:id="@+id/ForgotPass_prgLoading"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible" />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/ForgotPass_EmailLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/Dim20dp"
+        android:paddingEnd="@dimen/Dim20dp"
+        android:textColorHint="@color/LoginText"
+        android:layout_below="@id/ForgotPass_Imageview">
+
+        <EditText
+            android:id="@+id/ForgotPass_txtEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="16dp"
+            android:drawableStart="@drawable/ic_email_teal_a700_24dp"
+            android:ems="10"
+            android:hint="@string/str_email_hint"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/loginAccent" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/ForgotPass_btnForgotPass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/login_ripple"
+        android:layout_marginTop="@dimen/Dim30dp"
+        android:layout_marginStart="@dimen/LoginPagePaddingLeft"
+        android:layout_marginEnd="@dimen/LoginPagePaddingRight"
+        android:text="@string/str_btn_login"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/White"
+        android:layout_below="@id/ForgotPass_EmailLayout"/>
+
+    <TextView
+        android:id="@+id/ForgotPass_txtLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/str_have_account"
+        android:textAlignment="center"
+        android:textColor="@color/White"
+        android:layout_marginTop="55dp"
+        android:layout_below="@id/ForgotPass_btnForgotPass"/>
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/ForgotPass_btnSignup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/login_ripple"
+        android:text="@string/str_register"
+        android:textAllCaps="false"
+        android:textColor="@color/White" />
+</RelativeLayout>

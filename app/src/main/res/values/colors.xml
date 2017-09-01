@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#009688</color>
+    <color name="primary_dark">#00796b</color>
+    <color name="primary_light">#b2dfdb</color>
+    <color name="accent">#ffc107</color>
+    <color name="spots_dialog_color">@color/accent</color>
+
+    <color name="traveloka">#1ba0e3</color>
+
+    <color name="black">#000000</color>
+    <color name="jet">#222222</color>
+    <color name="oil">#333333</color>
+    <color name="monsoon">#777777</color>
+    <color name="jumbo">#888888</color>
+    <color name="aluminum">#999999</color>
+    <color name="base">#AAAAAA</color>
+    <color name="iron">#cccccc</color>
+
+    <!-- LOGIN PAGE COLOR -->
+    <color name="LoginText">#949292</color>
+    <color name="White">#ffffff</color>
+
+    <color name="loginPrimary">#00bcd4</color>
+    <color name="loginPrimaryDark">#0097a7</color>
+    <color name="loginAccent">#F2FE71</color>
+    <color name="login_bg">#26ae90</color>
+    <color name="login_btn">#26ae90</color>
+    <color name="logout_btn">#ff6861</color>
+
+    <color name="colorLightGreen">#99CC00</color>
+    <color name="colorLightOrange">#FFBB33</color>
+</resources>
