@@ -1,14 +1,152 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.traviatour.travianmockupkotlin.MainActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <com.github.ksoichiro.android.observablescrollview.ObservableScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:fillViewport="true"
+        android:background="@color/iron"
+        android:layout_above="@+id/bottom_navigation">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent">
+
+            <ss.com.bannerslider.views.BannerSlider
+                android:id="@+id/banner_slider1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:interval="3000"
+                app:defaultIndicators="circle"
+                app:indicatorSize="5dp"
+                app:loopSlides="true" />
+
+            <View
+                android:id="@+id/anchor"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/parallax_image_height"
+                android:minHeight="@dimen/parallax_image_height" />
+            <LinearLayout
+                android:id="@+id/Include_Layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:layout_marginTop="175dp">
+                <!--android:layout_below="@id/banner_slider1"-->
+
+                <include layout="@layout/home_button" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/Fav_Label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:paddingLeft="@dimen/Dim10dp"
+                android:layout_marginTop="@dimen/Dim10dp"
+                android:textAlignment="viewStart"
+                android:textSize="18sp"
+                android:typeface="sans"
+                android:text="Favourite Tour"
+                android:layout_below="@id/Include_Layout"/>
+
+            <LinearLayout
+                android:id="@+id/Fav_Layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/Fav_Label">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerview1"
+                    android:scrollbars="none"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    />
+                <!--<include layout="@layout/favourite_tour" />-->
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/BestSeller_Label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:paddingLeft="@dimen/Dim10dp"
+                android:layout_marginTop="@dimen/Dim10dp"
+                android:textAlignment="viewStart"
+                android:textSize="18sp"
+                android:typeface="sans"
+                android:text="Best Seller Souvenir"
+                android:layout_below="@id/Fav_Layout"/>
+
+            <LinearLayout
+                android:id="@+id/Promo_Layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/BestSeller_Label">
+                <include layout="@layout/best_seller_souvenir" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/Promo_Label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:paddingLeft="@dimen/Dim10dp"
+                android:layout_marginTop="@dimen/Dim10dp"
+                android:textAlignment="viewStart"
+                android:textSize="18sp"
+                android:typeface="sans"
+                android:text="Check our latest promo"
+                android:layout_below="@id/Promo_Layout"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/Promo_Label">
+                <include layout="@layout/best_seller_souvenir" />
+            </LinearLayout>
+        </RelativeLayout>
+
+    </com.github.ksoichiro.android.observablescrollview.ObservableScrollView>
+
+    <com.ashokvarma.bottomnavigation.BottomNavigationBar
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:background="@color/White"
+        android:elevation="@dimen/Dim30dp"/>
+
+    <include layout="@layout/gradient_header" />
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:popupTheme="@style/Theme.AppCompat.Light.DarkActionBar"
+        app:theme="@style/Toolbar"
+        android:layout_marginTop="0dp"
+        android:gravity="top">
+
+        <ImageView
+            android:src="@drawable/toolbar_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:scaleType="fitStart"
+            android:layout_gravity="top"
+            android:paddingTop="0dp"
+            />
+    </android.support.v7.widget.Toolbar>
+
+
 
 </RelativeLayout>

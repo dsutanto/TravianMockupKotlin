@@ -39,6 +39,8 @@ dependencies {
     compile 'com.ss.bannerslider:bannerslider:1.8.0'
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.makeramen:roundedimageview:2.3.0'
+
     testCompile 'junit:junit:4.12'
 }
 
