@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SnapHelper;
 import android.support.v7.widget.Toolbar;
 import android.view.GestureDetector;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,15 +36,7 @@ public class MainActivity extends AppCompatActivity implements ObservableScrollV
     private ObservableScrollView mScrollView;
     private int mParallaxImageHeight;
     private BannerSlider bannerSlider;
-
-
-    RecyclerView recyclerView;
-    ArrayList<String> Number;
-    RecyclerView.LayoutManager RecyclerViewLayoutManager;
-    RecyclerViewAdapter RecyclerViewHorizontalAdapter;
-    LinearLayoutManager HorizontalLayout ;
-    View ChildView ;
-    int RecyclerViewItemPosition ;
+    private RecyclerView mRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,13 +61,15 @@ public class MainActivity extends AppCompatActivity implements ObservableScrollV
                 .addItem(new BottomNavigationItem(R.drawable.ic_account_circle_amber_24dp, "My Account"))
                 .initialise();
 
-        bottomNavigationBar.setTabSelectedListener(new BottomNavigationBar.OnTabSelectedListener(){
+        bottomNavigationBar.setTabSelectedListener(new BottomNavigationBar.OnTabSelectedListener() {
             @Override
             public void onTabSelected(int position) {
             }
+
             @Override
             public void onTabUnselected(int position) {
             }
+
             @Override
             public void onTabReselected(int position) {
             }
@@ -92,73 +87,37 @@ public class MainActivity extends AppCompatActivity implements ObservableScrollV
 
         mParallaxImageHeight = getResources().getDimensionPixelSize(R.dimen.parallax_image_height);
 
-        recyclerView = (RecyclerView)findViewById(R.id.recyclerview1);
 
-        RecyclerViewLayoutManager = new LinearLayoutManager(getApplicationContext());
-
-        recyclerView.setLayoutManager(RecyclerViewLayoutManager);
-
-        // Adding items to RecyclerView.
-        AddItemsToRecyclerViewArrayList();
-
-        RecyclerViewHorizontalAdapter = new RecyclerViewAdapter(Number,this);
-
-        HorizontalLayout = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false);
-        recyclerView.setLayoutManager(HorizontalLayout);
-
-        recyclerView.setAdapter(RecyclerViewHorizontalAdapter);
+        mRecyclerView = (RecyclerView) findViewById(R.id.main_recycler_view);
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         SnapHelper startSnapHelper = new StartSnapHelper();
-        startSnapHelper.attachToRecyclerView(recyclerView);
+        startSnapHelper.attachToRecyclerView(mRecyclerView);
 
-        // Adding on item click listener to RecyclerView.
-        recyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
-
-            GestureDetector gestureDetector = new GestureDetector(MainActivity.this, new GestureDetector.SimpleOnGestureListener() {
-
-                @Override public boolean onSingleTapUp(MotionEvent motionEvent) {
-
-                    return true;
-                }
-
-            });
-            @Override
-            public boolean onInterceptTouchEvent(RecyclerView Recyclerview, MotionEvent motionEvent) {
-
-                ChildView = Recyclerview.findChildViewUnder(motionEvent.getX(), motionEvent.getY());
-
-                if(ChildView != null && gestureDetector.onTouchEvent(motionEvent)) {
-
-                    //Getting clicked value.
-                    RecyclerViewItemPosition = Recyclerview.getChildAdapterPosition(ChildView);
-
-                    // Showing clicked item value on screen using toast message.
-                    Toast.makeText(MainActivity.this, Number.get(RecyclerViewItemPosition), Toast.LENGTH_LONG).show();
-
-                }
-
-                return false;
-            }
-
-            @Override
-            public void onTouchEvent(RecyclerView Recyclerview, MotionEvent motionEvent) {
-
-            }
-
-            @Override
-            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-
-            }
-        });
-
+        setupAdapter();
     }
 
-    private void AddItemsToRecyclerViewArrayList() {
-        Number = new ArrayList<>();
-        Number.add("@drawable/travel");
-        Number.add("@drawable/visa");
-        Number.add("@drawable/disc");
-        Number.add("@drawable/summer");
+    private void setupAdapter() {
+        List<SinglePromoModel> mPromoData = getPromo();
+
+        SectionPromoAdapter SectionAdapter = new SectionPromoAdapter();
+        SectionAdapter.AddSection(new SectionPromoModel("Favourite Tour", mPromoData));
+        SectionAdapter.AddSection(new SectionPromoModel("Best Deals", mPromoData));
+        SectionAdapter.AddSection(new SectionPromoModel("Advance Booking", mPromoData));
+
+        mRecyclerView.setAdapter(SectionAdapter);
+    }
+
+    private List<SinglePromoModel> getPromo() {
+        List<SinglePromoModel> Promo = new ArrayList<>();
+        Promo.add(new SinglePromoModel("Holiday+", R.drawable.travel, "Holiday"));
+        Promo.add(new SinglePromoModel("Funtastic Deal", R.drawable.visa, "Funtastic Deal"));
+        Promo.add(new SinglePromoModel("Fly Cheap", R.drawable.summer, "Fly Cheap"));
+        Promo.add(new SinglePromoModel("Advance Booking", R.drawable.promo12, "Advance Booking"));
+        Promo.add(new SinglePromoModel("Best Deal", R.drawable.promo22, "Best Deal"));
+        Promo.add(new SinglePromoModel("Free Ride", R.drawable.promo1, "Free Ride"));
+        return Promo;
     }
 
     @Override
